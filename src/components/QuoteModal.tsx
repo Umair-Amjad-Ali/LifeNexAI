@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { COLORS } from "@/constants/colors";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -50,10 +51,13 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-dark-card border border-dark-border p-8 rounded-2xl shadow-[0_0_50px_rgba(0,255,135,0.15)] z-10 overflow-hidden"
+            className="relative w-full max-w-lg bg-dark-card border border-dark-border p-8 rounded-2xl shadow-[0_0_50px_rgba(79,70,229,0.15)] z-10 overflow-hidden"
           >
             {/* Decorative Tech Line */}
-            <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-accent-teal via-accent-green to-accent-teal" />
+            <div 
+              className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r" 
+              style={{ backgroundImage: `linear-gradient(to right, ${COLORS.accentLightBlue}, ${COLORS.primary}, ${COLORS.accentLightBlue})` }}
+            />
 
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-bold tracking-wider text-white">
@@ -82,14 +86,18 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
 
             {formSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center gap-4">
-                <div className="h-16 w-16 rounded-full border border-accent-green flex items-center justify-center bg-accent-green/5 shadow-[0_0_20px_rgba(0,255,135,0.2)]">
+                <div 
+                  className="h-16 w-16 rounded-full border flex items-center justify-center bg-primary/5 shadow-[0_0_20px_rgba(79,70,229,0.2)]"
+                  style={{ borderColor: COLORS.primary }}
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth={2}
                     stroke="currentColor"
-                    className="w-8 h-8 text-accent-green"
+                    className="w-8 h-8"
+                    style={{ color: COLORS.primary }}
                   >
                     <path
                       strokeLinecap="round"
@@ -120,7 +128,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       setQuoteForm({ ...quoteForm, name: e.target.value })
                     }
                     placeholder="Dr. John Doe"
-                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-accent-green transition-all"
+                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-primary transition-all"
                   />
                 </div>
 
@@ -136,7 +144,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       setQuoteForm({ ...quoteForm, email: e.target.value })
                     }
                     placeholder="john@clinic.com"
-                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-accent-green transition-all"
+                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-primary transition-all"
                   />
                 </div>
 
@@ -150,7 +158,7 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       onChange={(e) =>
                         setQuoteForm({ ...quoteForm, service: e.target.value })
                       }
-                      className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-accent-green transition-all appearance-none cursor-pointer"
+                      className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-primary transition-all appearance-none cursor-pointer"
                     >
                       <option
                         value="AI Integration"
@@ -207,13 +215,13 @@ export default function QuoteModal({ isOpen, onClose }: QuoteModalProps) {
                       setQuoteForm({ ...quoteForm, details: e.target.value })
                     }
                     placeholder="Briefly describe your medical application or project goals..."
-                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-accent-green transition-all resize-none"
+                    className="w-full bg-black/40 border border-dark-border px-4 py-3 rounded-lg text-sm text-white focus:outline-none focus:border-primary transition-all resize-none"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-4 mt-2 bg-accent-green text-black font-bold tracking-widest text-sm rounded-lg hover:shadow-[0_0_20px_rgba(0,255,135,0.4)] transition-all cursor-pointer"
+                  className="w-full py-4 mt-2 bg-primary text-white font-bold tracking-widest text-sm rounded-lg hover:shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all cursor-pointer border border-primary/20"
                 >
                   SEND REQUEST
                 </button>

@@ -3,8 +3,13 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
 import QuoteModal from "@/components/QuoteModal";
+import SocialStrip from "@/components/SocialStrip";
+import { Features } from "@/components/Features";
+import AboutUsSection from "@/components/ui/about-us-section";
+import LifeVoices from "@/components/LifeVoices";
+import { COLORS } from "@/constants/colors";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -182,23 +187,31 @@ export default function Home() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-dark-bg text-white overflow-hidden selection:bg-accent-green selection:text-black">
+    <div
+      className="relative min-h-screen text-white overflow-hidden selection:text-white"
+      style={
+        {
+          backgroundColor: COLORS.darkBg,
+          selectionColor: COLORS.primary,
+        } as any
+      }
+    >
       {/* Radial Glow Spotlight (Mouse Tracker) */}
       <div
         className="pointer-events-none fixed inset-0 z-30 transition-opacity duration-300 opacity-45"
         style={{
-          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(0, 255, 135, 0.09), transparent 80%)`,
+          background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y}px, rgba(79, 70, 229, 0.12), transparent 80%)`,
         }}
       />
 
       {/* Tech Grid Background Overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-70 pointer-events-none z-0" />
-      <Sidebar setIsQuoteModalOpen={setIsQuoteModalOpen} />
+      <Navbar setIsQuoteModalOpen={setIsQuoteModalOpen} />
 
       {/* Desktop Main Layout */}
-      <div className="relative flex flex-col md:flex-row min-h-screen w-full">
-        {/* Right Content Area (Hero + Ticker + Who We Are) */}
-        <main className="flex-1 flex flex-col md:pl-16 lg:pl-20 w-full min-h-screen">
+      <div className="relative flex flex-col min-h-screen w-full">
+        {/* Content Area (Hero + Ticker + Who We Are) */}
+        <main className="flex-1 flex flex-col w-full min-h-screen">
           {/* ===== AUTO-PLAYING HORIZONTAL HERO CAROUSEL ===== */}
           <section
             id="hero"
@@ -219,41 +232,44 @@ export default function Home() {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    className="absolute inset-0 w-full h-full flex items-center justify-center px-6 sm:px-12 md:px-10 lg:px-16 overflow-hidden"
+                    className="absolute inset-0 w-full h-full flex items-center justify-center pt-24 pb-8 overflow-hidden"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-8 md:gap-6 lg:gap-8 items-center w-full max-w-[1500px] mx-auto">
-                      {/* LEFT: Text Content */}
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+                      {/* LEFT: Content */}
                       <div className="flex flex-col justify-center">
-                        <div className="flex items-center gap-2 mb-6">
-                          <span className="h-2 w-2 rounded-full bg-accent-green animate-pulse" />
-                          <span className="text-[10px] font-bold tracking-[0.25em] text-accent-green uppercase">
-                            AI-POWERED HEALTHCARE SOFTWARE
+                        <div className="flex items-center gap-2 mb-5">
+                          <span
+                            className="h-2 w-2 rounded-full animate-pulse"
+                            style={{ backgroundColor: COLORS.primary }}
+                          />
+                          <span
+                            className="text-[10px] font-bold tracking-[0.25em] uppercase"
+                            style={{ color: COLORS.primary }}
+                          >
+                            01 / DIGITAL DIAGNOSTICS
                           </span>
                         </div>
-
-                        <h1 className="text-3xl sm:text-4xl xl:text-5xl font-black tracking-tight leading-[1.05] mb-5 select-none">
-                          UNLOCK YOUR <br />
+                        <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight leading-[1.08] mb-5 select-none font-sans">
+                          INTEGRATING DEEP <br />
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
-                            MEDICAL AI
+                            CLINICAL SYSTEMS
                           </span>
-                          <span className="bg-linear-to-r from-white via-white to-accent-green/80 bg-clip-text text-transparent uppercase block mt-1">
-                            APPLICATIONS.
+                          <span className="bg-linear-to-r from-primary via-[#38bdf8] to-white bg-clip-text text-transparent uppercase block mt-1">
+                            WITH NEXT-GEN AI.
                           </span>
-                        </h1>
+                        </h2>
 
-                        <p className="text-muted-gray text-xs sm:text-sm leading-relaxed mb-6 max-w-lg">
-                          We specialize in high-end medical software solutions
-                          integrated with advanced artificial intelligence. From
-                          feature-rich mobile applications using Flutter and
-                          React Native to modern web systems on
-                          React/Next.js/Vue, we build robust backend
-                          architectures with seamless AI models.
+                        <p className="text-muted-gray text-xs sm:text-sm leading-relaxed mb-6 max-w-lg mt-4">
+                          We construct elite software interfaces connecting deep
+                          neural network capabilities with intuitive health tech
+                          designs, linking secure cloud web architectures with
+                          seamless AI models.
                         </p>
 
                         <div className="flex items-center gap-4 mt-2">
                           <button
                             onClick={() => handleSlideChange(1)}
-                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-accent-green bg-transparent hover:shadow-[0_0_15px_rgba(0,255,135,0.25)] transition-all duration-300 cursor-pointer"
+                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-primary bg-transparent hover:shadow-[0_0_15px_rgba(79,70,229,0.25)] transition-all duration-300 cursor-pointer"
                           >
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-90 group-hover:scale-100">
                               <svg
@@ -265,7 +281,10 @@ export default function Home() {
                                   fill="none"
                                   d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
                                 />
-                                <text className="fill-accent-green text-[7px] font-bold tracking-[0.25em]">
+                                <text
+                                  className="text-[7px] font-bold tracking-[0.25em]"
+                                  style={{ fill: COLORS.primary }}
+                                >
                                   <textPath href="#circlePath" startOffset="0%">
                                     • EXPLORE MORE • LIFENEX AI • DIGITAL
                                     HEALTHCARE
@@ -279,7 +298,7 @@ export default function Home() {
                               viewBox="0 0 24 24"
                               strokeWidth={2}
                               stroke="currentColor"
-                              className="w-4 h-4 text-white group-hover:text-accent-green transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                              className="w-4 h-4 text-white group-hover:text-primary transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                             >
                               <path
                                 strokeLinecap="round"
@@ -300,39 +319,13 @@ export default function Home() {
                       </div>
 
                       {/* MIDDLE: Social strip */}
-                      <div className="hidden md:flex flex-col items-center gap-4 px-3 lg:px-4 border-l border-r border-white/5 self-center">
-                        <div className="flex flex-col gap-4 text-muted-gray">
-                          {socialLinks.map((social, idx) => (
-                            <a
-                              key={idx}
-                              href={social.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              title={social.name}
-                              className="hover:text-accent-green hover:border-accent-green/60 hover:shadow-[0_0_15px_rgba(0,255,135,0.3)] transition-all w-7 h-7 flex items-center justify-center border border-white/10 rounded-full bg-black/40 hover:bg-accent-green/5"
-                            >
-                              {social.icon}
-                            </a>
-                          ))}
-                        </div>
-                        <div className="flex flex-col items-center gap-3 mt-2">
-                          <span
-                            className="text-[9px] font-bold tracking-[0.25em] text-muted-gray uppercase whitespace-nowrap"
-                            style={{ writingMode: "vertical-rl" }}
-                          >
-                            Scroll Down To Explore
-                          </span>
-                          <div className="h-12 w-px bg-linear-to-b from-white/30 to-transparent relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1/2 bg-accent-green animate-scroll-down" />
-                          </div>
-                        </div>
-                      </div>
+                      <SocialStrip />
 
                       {/* RIGHT: Hero Image */}
                       <div className="relative w-full aspect-4/3 md:aspect-square xl:aspect-4/3 rounded-2xl overflow-hidden border border-white/10 group shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
-                        <div className="absolute inset-0 bg-linear-to-tr from-accent-green/30 via-accent-teal/10 to-transparent z-10 mix-blend-color" />
+                        <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent z-10 mix-blend-color" />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                        <div className="absolute inset-0 border border-accent-green/0 group-hover:border-accent-green/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(0,255,135,0)] group-hover:shadow-[inset_0_0_30px_rgba(0,255,135,0.25)]" />
+                        <div className="absolute inset-0 border border-primary/0 group-hover:border-primary/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(0,0,0,0)] group-hover:shadow-[inset_0_0_30px_rgba(79,70,229,0.25)]" />
                         <Image
                           src="/team_medical_ai.png"
                           alt="LifeNex AI Medical App Development Team"
@@ -342,8 +335,14 @@ export default function Home() {
                           priority
                         />
                         <div className="absolute bottom-4 left-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-accent-green animate-ping" />
-                          <span className="text-[10px] font-bold tracking-widest text-accent-green">
+                          <div
+                            className="h-2 w-2 rounded-full animate-ping"
+                            style={{ backgroundColor: COLORS.primary }}
+                          />
+                          <span
+                            className="text-[10px] font-bold tracking-widest"
+                            style={{ color: COLORS.primary }}
+                          >
                             LIFENEX LABS
                           </span>
                         </div>
@@ -358,7 +357,7 @@ export default function Home() {
                             target="_blank"
                             rel="noopener noreferrer"
                             title={social.name}
-                            className="hover:text-accent-green hover:border-accent-green/60 hover:shadow-[0_0_15px_rgba(0,255,135,0.3)] transition-all w-9 h-9 flex items-center justify-center border border-white/10 rounded-full bg-black/40 hover:bg-accent-green/5"
+                            className="hover:text-primary hover:border-primary/60 hover:shadow-[0_0_15px_rgba(79,70,229,0.3)] transition-all w-9 h-9 flex items-center justify-center border border-white/10 rounded-full bg-black/40 hover:bg-primary/5"
                           >
                             {social.icon}
                           </a>
@@ -376,24 +375,30 @@ export default function Home() {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    className="absolute inset-0 w-full h-full flex items-center justify-center px-6 sm:px-12 md:px-10 lg:px-16 overflow-hidden"
+                    className="absolute inset-0 w-full h-full flex items-center justify-center pt-24 pb-8 overflow-hidden"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center w-full max-w-[1500px] mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
                       {/* LEFT: Content */}
                       <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-2 mb-5">
-                          <span className="h-2 w-2 rounded-full bg-accent-teal animate-pulse" />
-                          <span className="text-[10px] font-bold tracking-[0.25em] text-accent-teal uppercase">
+                          <span
+                            className="h-2 w-2 rounded-full animate-pulse"
+                            style={{ backgroundColor: COLORS.accentLightBlue }}
+                          />
+                          <span
+                            className="text-[10px] font-bold tracking-[0.25em] uppercase"
+                            style={{ color: COLORS.accentLightBlue }}
+                          >
                             MOBILE DEVELOPMENT
                           </span>
                         </div>
 
-                        <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight leading-[1.08] mb-5 select-none">
+                        <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight leading-[1.08] mb-5 select-none font-sans">
                           BUILD NEXT-GEN <br />
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
                             MOBILE APPS
                           </span>
-                          <span className="bg-linear-to-r from-accent-teal via-accent-green to-white bg-clip-text text-transparent uppercase block mt-1">
+                          <span className="bg-linear-to-r from-[#38bdf8] via-primary to-white bg-clip-text text-transparent uppercase block mt-1">
                             WITH AI POWER.
                           </span>
                         </h2>
@@ -419,7 +424,11 @@ export default function Home() {
                           ].map((tech) => (
                             <span
                               key={tech}
-                              className="px-3.5 py-1.5 text-[10px] font-bold tracking-wider rounded-full border border-accent-teal/30 bg-accent-teal/5 text-accent-teal hover:bg-accent-teal/15 hover:border-accent-teal/60 transition-all cursor-default"
+                              className="px-3.5 py-1.5 text-[10px] font-bold tracking-wider rounded-full border border-accent-teal/30 bg-accent-teal/5 hover:bg-accent-teal/15 hover:border-accent-teal/60 transition-all cursor-default"
+                              style={{
+                                color: COLORS.accentLightBlue,
+                                borderColor: `${COLORS.accentLightBlue}30`,
+                              }}
                             >
                               {tech}
                             </span>
@@ -429,7 +438,7 @@ export default function Home() {
                         <div className="flex items-center gap-4">
                           <button
                             onClick={() => handleSlideChange(2)}
-                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-accent-teal bg-transparent hover:shadow-[0_0_15px_rgba(0,229,255,0.25)] transition-all duration-300 cursor-pointer"
+                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-primary bg-transparent hover:shadow-[0_0_15px_rgba(79,70,229,0.25)] transition-all duration-300 cursor-pointer"
                           >
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-90 group-hover:scale-100">
                               <svg
@@ -441,7 +450,10 @@ export default function Home() {
                                   fill="none"
                                   d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
                                 />
-                                <text className="fill-accent-teal text-[7px] font-bold tracking-[0.25em]">
+                                <text
+                                  className="text-[7px] font-bold tracking-[0.25em]"
+                                  style={{ fill: COLORS.accentLightBlue }}
+                                >
                                   <textPath
                                     href="#circlePathMobile"
                                     startOffset="0%"
@@ -457,7 +469,7 @@ export default function Home() {
                               viewBox="0 0 24 24"
                               strokeWidth={2}
                               stroke="currentColor"
-                              className="w-4 h-4 text-white group-hover:text-accent-teal transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                              className="w-4 h-4 text-white group-hover:text-primary transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
                             >
                               <path
                                 strokeLinecap="round"
@@ -477,11 +489,14 @@ export default function Home() {
                         </div>
                       </div>
 
+                      {/* MIDDLE: Social strip */}
+                      <SocialStrip />
+
                       {/* RIGHT: Image */}
                       <div className="relative w-full aspect-4/3 md:aspect-square xl:aspect-4/3 rounded-2xl overflow-hidden border border-white/10 group shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
-                        <div className="absolute inset-0 bg-linear-to-tr from-accent-teal/25 via-accent-green/10 to-transparent z-10 mix-blend-color" />
+                        <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent z-10 mix-blend-color" />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                        <div className="absolute inset-0 border border-accent-teal/0 group-hover:border-accent-teal/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(0,229,255,0)] group-hover:shadow-[inset_0_0_30px_rgba(0,229,255,0.2)]" />
+                        <div className="absolute inset-0 border border-primary/0 group-hover:border-primary/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(0,0,0,0)] group-hover:shadow-[inset_0_0_30px_rgba(79,70,229,0.2)]" />
                         <Image
                           src="/mobile_dev_ai.png"
                           alt="AI-Powered Mobile App Development"
@@ -490,8 +505,14 @@ export default function Home() {
                           className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute bottom-4 left-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-accent-teal animate-ping" />
-                          <span className="text-[10px] font-bold tracking-widest text-accent-teal">
+                          <div
+                            className="h-2 w-2 rounded-full animate-ping"
+                            style={{ backgroundColor: COLORS.accentLightBlue }}
+                          />
+                          <span
+                            className="text-[10px] font-bold tracking-widest"
+                            style={{ color: COLORS.accentLightBlue }}
+                          >
                             MOBILE STUDIO
                           </span>
                         </div>
@@ -508,24 +529,24 @@ export default function Home() {
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    className="absolute inset-0 w-full h-full flex items-center justify-center px-6 sm:px-12 md:px-10 lg:px-16 overflow-hidden"
+                    className="absolute inset-0 w-full h-full flex items-center justify-center pt-24 pb-8 overflow-hidden"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center w-full max-w-[1500px] mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
                       {/* LEFT: Content */}
                       <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-2 mb-5">
-                          <span className="h-2 w-2 rounded-full bg-[#a78bfa] animate-pulse" />
-                          <span className="text-[10px] font-bold tracking-[0.25em] text-[#a78bfa] uppercase">
+                          <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
+                          <span className="text-[10px] font-bold tracking-[0.25em] text-white uppercase">
                             WEB DEVELOPMENT
                           </span>
                         </div>
 
-                        <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight leading-[1.08] mb-5 select-none">
+                        <h2 className="text-2xl sm:text-3xl xl:text-4xl font-black tracking-tight leading-[1.08] mb-5 select-none font-sans">
                           CRAFT MODERN <br />
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
                             WEB EXPERIENCES
                           </span>
-                          <span className="bg-linear-to-r from-[#a78bfa] via-accent-green to-white bg-clip-text text-transparent uppercase block mt-1">
+                          <span className="bg-linear-to-r from-primary via-[#38bdf8] to-white bg-clip-text text-transparent uppercase block mt-1 font-sans">
                             AT SCALE.
                           </span>
                         </h2>
@@ -551,7 +572,7 @@ export default function Home() {
                           ].map((tech) => (
                             <span
                               key={tech}
-                              className="px-3.5 py-1.5 text-[10px] font-bold tracking-wider rounded-full border border-[#a78bfa]/30 bg-[#a78bfa]/5 text-[#a78bfa] hover:bg-[#a78bfa]/15 hover:border-[#a78bfa]/60 transition-all cursor-default"
+                              className="px-3.5 py-1.5 text-[10px] font-bold tracking-wider rounded-full border border-white/20 bg-white/5 text-white hover:bg-white/10 transition-all cursor-default"
                             >
                               {tech}
                             </span>
@@ -561,7 +582,7 @@ export default function Home() {
                         <div className="flex items-center gap-4">
                           <button
                             onClick={scrollToAbout}
-                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-[#a78bfa] bg-transparent hover:shadow-[0_0_15px_rgba(167,139,250,0.25)] transition-all duration-300 cursor-pointer"
+                            className="group relative flex items-center justify-center h-11 w-11 shrink-0 rounded-full border border-white/20 hover:border-primary bg-transparent hover:shadow-[0_0_15px_rgba(79,70,229,0.25)] transition-all duration-300 cursor-pointer"
                           >
                             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-90 group-hover:scale-100">
                               <svg
@@ -573,7 +594,10 @@ export default function Home() {
                                   fill="none"
                                   d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
                                 />
-                                <text className="fill-[#a78bfa] text-[7px] font-bold tracking-[0.25em]">
+                                <text
+                                  className="text-[7px] font-bold tracking-[0.25em]"
+                                  style={{ fill: COLORS.secondary }}
+                                >
                                   <textPath
                                     href="#circlePathWeb"
                                     startOffset="0%"
@@ -589,7 +613,7 @@ export default function Home() {
                               viewBox="0 0 24 24"
                               strokeWidth={2}
                               stroke="currentColor"
-                              className="w-4 h-4 text-white group-hover:text-[#a78bfa] transform group-hover:translate-y-0.5 transition-all duration-300"
+                              className="w-4 h-4 text-white group-hover:text-primary transform group-hover:translate-y-0.5 transition-all duration-300"
                             >
                               <path
                                 strokeLinecap="round"
@@ -609,11 +633,14 @@ export default function Home() {
                         </div>
                       </div>
 
+                      {/* MIDDLE: Social strip */}
+                      <SocialStrip />
+
                       {/* RIGHT: Image */}
                       <div className="relative w-full aspect-4/3 md:aspect-square xl:aspect-4/3 rounded-2xl overflow-hidden border border-white/10 group shadow-[0_25px_60px_rgba(0,0,0,0.6)]">
-                        <div className="absolute inset-0 bg-linear-to-tr from-[#a78bfa]/25 via-accent-green/10 to-transparent z-10 mix-blend-color" />
+                        <div className="absolute inset-0 bg-linear-to-tr from-primary/20 via-primary/5 to-transparent z-10 mix-blend-color" />
                         <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500 z-10" />
-                        <div className="absolute inset-0 border border-[#a78bfa]/0 group-hover:border-[#a78bfa]/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(167,139,250,0)] group-hover:shadow-[inset_0_0_30px_rgba(167,139,250,0.2)]" />
+                        <div className="absolute inset-0 border border-white/0 group-hover:border-white/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(255,255,255,0)] group-hover:shadow-[inset_0_0_30px_rgba(255,255,255,0.2)]" />
                         <Image
                           src="/web_dev_ai.png"
                           alt="AI-Powered Web Application Development"
@@ -622,8 +649,8 @@ export default function Home() {
                           className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute bottom-4 left-4 z-20 bg-black/85 backdrop-blur-md border border-white/10 px-4 py-2 rounded-lg flex items-center gap-2">
-                          <div className="h-2 w-2 rounded-full bg-[#a78bfa] animate-ping" />
-                          <span className="text-[10px] font-bold tracking-widest text-[#a78bfa]">
+                          <div className="h-2 w-2 rounded-full bg-white animate-ping" />
+                          <span className="text-[10px] font-bold tracking-widest text-white">
                             WEB STUDIO
                           </span>
                         </div>
@@ -640,11 +667,19 @@ export default function Home() {
                 <button
                   key={i}
                   onClick={() => handleSlideChange(i)}
-                  className={`h-2.5 w-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                  className={`h-1.5 w-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     currentSlide === i
-                      ? "bg-accent-green shadow-[0_0_10px_#00ff87] scale-125"
+                      ? "bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)]"
                       : "bg-white/20 hover:bg-white/40"
                   }`}
+                  style={{
+                    backgroundColor:
+                      currentSlide === i ? COLORS.primary : undefined,
+                    boxShadow:
+                      currentSlide === i
+                        ? `0 0 10px ${COLORS.primary}`
+                        : undefined,
+                  }}
                   aria-label={`Go to slide ${i + 1}`}
                 />
               ))}
@@ -652,18 +687,29 @@ export default function Home() {
           </section>
 
           {/* Marquee Scrolling Banner */}
-          <section className="w-full bg-black/50 border-y border-white/5 py-6 overflow-hidden z-10 relative">
+          <section className="w-full border-y border-white/5 py-6 overflow-hidden z-10 relative bg-nav-bg">
             <div className="animate-marquee flex items-center whitespace-nowrap">
               {/* Loop items 3 times for a seamless scroll container */}
               {[1, 2, 3].map((loopIndex) => (
                 <div key={loopIndex} className="flex items-center gap-12 pr-12">
                   {tickerItems.map((text, idx) => (
                     <React.Fragment key={`${loopIndex}-${idx}`}>
-                      <span className="text-xs sm:text-sm font-black tracking-[0.3em] text-white hover:text-accent-green transition-colors duration-300 cursor-default">
+                      <span
+                        className="text-xs sm:text-sm font-black tracking-[0.3em] text-white transition-colors duration-300 cursor-default"
+                        onMouseEnter={(e) =>
+                          (e.currentTarget.style.color = COLORS.primary)
+                        }
+                        onMouseLeave={(e) =>
+                          (e.currentTarget.style.color = "#ffffff")
+                        }
+                      >
                         {text}
                       </span>
                       {/* Custom Divider Graphic */}
-                      <div className="h-1.5 w-1.5 rotate-45 bg-accent-green" />
+                      <div
+                        className="h-1.5 w-1.5 rotate-45"
+                        style={{ backgroundColor: COLORS.primary }}
+                      />
                     </React.Fragment>
                   ))}
                 </div>
@@ -671,156 +717,36 @@ export default function Home() {
             </div>
           </section>
 
-          {/* "Who We Are" Section with Scroll Reveals */}
-          <section
-            id="about"
-            className="py-24 sm:py-32 px-6 sm:px-12 lg:px-20 z-10 relative bg-linear-to-b from-transparent to-black/40"
-          >
-            <div className="max-w-[1500px] mx-auto">
-              {/* Section Header */}
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6 }}
-                className="mb-16"
-              >
-                <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full border border-accent-green/30 bg-accent-green/5 text-[9px] font-bold tracking-[0.25em] text-accent-green uppercase mb-4">
-                  ✦ OUR MISSION & VALUES ✦
-                </span>
-                <h2 className="text-4xl sm:text-5xl font-black tracking-tight leading-none text-white select-none">
-                  Who We Are
-                </h2>
-              </motion.div>
-
-              {/* Main Content Split Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-                {/* Left Side: About Text & Features */}
-                <div className="lg:col-span-7 flex flex-col gap-8">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.1 }}
-                    className="text-muted-gray text-base leading-relaxed sm:text-lg"
-                  >
-                    At LifeNex AI, we bridge the gap between advanced artificial
-                    intelligence capabilities and intuitive, high-performance
-                    software. We build secure, FDA-compliant medical diagnostics
-                    apps, smart health trackers, and high-performance digital
-                    tools that empower doctors, researchers, and patients
-                    worldwide.
-                  </motion.p>
-
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-muted-gray text-sm sm:text-base leading-relaxed"
-                  >
-                    By leveraging modern tech stacks like Flutter, React Native,
-                    and Next.js, we construct cross-platform applications
-                    connected to reliable cloud platforms and deep neural
-                    network models. Our systems translate complex biosignals
-                    into clear, actionable clinical insights.
-                  </motion.p>
-
-                  {/* Feature Lists Staggered Entrance */}
-                  <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true, margin: "-50px" }}
-                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4"
-                  >
-                    {[
-                      {
-                        title: "Mobile Engineering",
-                        desc: "Native-grade iOS & Android apps built using Flutter and React Native.",
-                      },
-                      {
-                        title: "Web Architectures",
-                        desc: "Ultra-fast responsive web portals utilizing React, Next.js, and Vue.",
-                      },
-                      {
-                        title: "AI Core Integrations",
-                        desc: "Custom AI pipeline integrations, LLMs, computer vision, and analytics.",
-                      },
-                      {
-                        title: "Compliance & Security",
-                        desc: "Data protection built to comply with HIPAA and medical standards.",
-                      },
-                    ].map((feature, idx) => (
-                      <motion.div
-                        key={idx}
-                        variants={cardVariants}
-                        className="p-5 border border-white/5 bg-white/2 hover:bg-white/4 hover:border-accent-green/20 rounded-xl transition-all duration-300"
-                      >
-                        <h4 className="text-sm font-bold tracking-wider text-white mb-2 flex items-center gap-2">
-                          <span className="h-1.5 w-1.5 rounded-full bg-accent-green" />
-                          {feature.title}
-                        </h4>
-                        <p className="text-xs text-muted-gray leading-relaxed">
-                          {feature.desc}
-                        </p>
-                      </motion.div>
-                    ))}
-                  </motion.div>
-                </div>
-
-                {/* Right Side: Mockup Image with Smooth Scroll Slide & Float */}
-                <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="lg:col-span-5"
-                >
-                  <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    className="relative w-full aspect-square rounded-2xl overflow-hidden border border-white/10 group shadow-[0_25px_60px_rgba(0,0,0,0.6)]"
-                  >
-                    {/* Subtle Glow backdrop */}
-                    <div className="absolute inset-0 bg-linear-to-tr from-accent-teal/20 via-accent-green/5 to-transparent z-10 mix-blend-color" />
-
-                    {/* Image */}
-                    <Image
-                      src="/medical_ai_app.png"
-                      alt="LifeNex AI Mobile Application Diagnostics Display"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 35vw"
-                      className="object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
-                    />
-
-                    {/* Inner neon border overlay */}
-                    <div className="absolute inset-0 border border-white/5 group-hover:border-accent-teal/30 z-20 pointer-events-none transition-all duration-500 rounded-2xl shadow-[inset_0_0_20px_rgba(0,229,255,0)] group-hover:shadow-[inset_0_0_30px_rgba(0,229,255,0.2)]" />
-                  </motion.div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
+          <Features />
+          <AboutUsSection />
+          <LifeVoices />
         </main>
       </div>
 
       {/* Footer Branding Info */}
-      <footer className="md:pl-24 lg:pl-28 border-t border-dark-border py-8 text-center text-xs text-muted-gray bg-black/60 relative z-10">
-        <div className="max-w-[1500px] mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-dark-border py-8 text-center text-xs text-muted-gray bg-black/60 relative z-10">
+        <div className="max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} LifeNex AI. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
-            <a href="#" className="hover:text-accent-green transition-colors">
+            <a
+              href="#"
+              className="transition-colors duration-300"
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = COLORS.primary)
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+            >
               Privacy Policy
             </a>
             <span>•</span>
-            <a href="#" className="hover:text-accent-green transition-colors">
+            <a
+              href="#"
+              className="transition-colors duration-300"
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = COLORS.primary)
+              }
+              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
+            >
               Terms of Service
             </a>
           </div>

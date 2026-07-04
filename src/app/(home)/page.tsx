@@ -3,8 +3,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import QuoteModal from "@/components/QuoteModal";
 import SocialStrip from "@/components/SocialStrip";
 import { Features } from "@/components/Features";
 import AboutUsSection from "@/components/ui/about-us-section";
@@ -12,9 +10,8 @@ import LifeVoices from "@/components/LifeVoices";
 import { COLORS } from "@/constants/colors";
 import FAQ1 from "@/components/ui/faq-monochrome";
 
-export default function Home() {
+export default function HomePage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideDirection, setSlideDirection] = useState(1); // 1 = right-to-left, -1 = left-to-right
@@ -189,6 +186,7 @@ export default function Home() {
 
   const newLocal =
     "grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16";
+
   return (
     <div
       className="relative min-h-screen text-white overflow-hidden selection:text-white"
@@ -209,7 +207,6 @@ export default function Home() {
 
       {/* Tech Grid Background Overlay */}
       <div className="absolute inset-0 bg-grid-pattern opacity-70 pointer-events-none z-0" />
-      <Navbar setIsQuoteModalOpen={setIsQuoteModalOpen} />
 
       {/* Desktop Main Layout */}
       <div className="relative flex flex-col min-h-screen w-full">
@@ -401,7 +398,7 @@ export default function Home() {
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
                             MOBILE APPS
                           </span>
-                          <span className="bg-linear-to-r from-[#38bdf8] via-primary to-white bg-clip-text text-transparent uppercase block mt-1">
+                          <span className="bg-linear-to-r from-accent-teal via-primary to-white bg-clip-text text-transparent uppercase block mt-1">
                             WITH AI POWER.
                           </span>
                         </h2>
@@ -433,7 +430,7 @@ export default function Home() {
                                 borderColor: `${COLORS.accentLightBlue}30`,
                               }}
                             >
-                              {tech}
+                               {tech}
                             </span>
                           ))}
                         </div>
@@ -549,7 +546,7 @@ export default function Home() {
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
                             WEB EXPERIENCES
                           </span>
-                          <span className="bg-linear-to-r from-primary via-[#38bdf8] to-white bg-clip-text text-transparent uppercase block mt-1 font-sans">
+                          <span className="bg-linear-to-r from-primary via-accent-teal to-white bg-clip-text text-transparent uppercase block mt-1 font-sans">
                             AT SCALE.
                           </span>
                         </h2>
@@ -726,42 +723,6 @@ export default function Home() {
           <FAQ1 />
         </main>
       </div>
-
-      {/* Footer Branding Info */}
-      <footer className="border-t border-dark-border py-8 text-center text-xs text-muted-gray bg-black/60 relative z-10">
-        <div className="max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© {new Date().getFullYear()} LifeNex AI. All Rights Reserved.</p>
-          <div className="flex items-center gap-4">
-            <a
-              href="#"
-              className="transition-colors duration-300"
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = COLORS.primary)
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
-            >
-              Privacy Policy
-            </a>
-            <span>•</span>
-            <a
-              href="#"
-              className="transition-colors duration-300"
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = COLORS.primary)
-              }
-              onMouseLeave={(e) => (e.currentTarget.style.color = "")}
-            >
-              Terms of Service
-            </a>
-          </div>
-        </div>
-      </footer>
-
-      {/* Reusable Quote Form Modal Component */}
-      <QuoteModal
-        isOpen={isQuoteModalOpen}
-        onClose={() => setIsQuoteModalOpen(false)}
-      />
     </div>
   );
 }

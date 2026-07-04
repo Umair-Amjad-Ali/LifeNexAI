@@ -78,12 +78,32 @@ export function GlowyWavesHero({
 
     // Use the project's actual brand colors (reduced to 3 waves for better rendering performance)
     const wavePalette: WaveConfig[] = [
-      { offset: 0, amplitude: 60, frequency: 0.003, color: "rgba(79, 70, 229, 0.7)", opacity: 0.4 },
-      { offset: Math.PI / 2, amplitude: 75, frequency: 0.0026, color: "rgba(56, 189, 248, 0.6)", opacity: 0.35 },
-      { offset: Math.PI, amplitude: 50, frequency: 0.0034, color: "rgba(79, 70, 229, 0.45)", opacity: 0.3 },
+      {
+        offset: 0,
+        amplitude: 60,
+        frequency: 0.003,
+        color: "rgba(79, 70, 229, 0.7)",
+        opacity: 0.4,
+      },
+      {
+        offset: Math.PI / 2,
+        amplitude: 75,
+        frequency: 0.0026,
+        color: "rgba(56, 189, 248, 0.6)",
+        opacity: 0.35,
+      },
+      {
+        offset: Math.PI,
+        amplitude: 50,
+        frequency: 0.0034,
+        color: "rgba(79, 70, 229, 0.45)",
+        opacity: 0.3,
+      },
     ];
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const mouseInfluence = prefersReducedMotion ? 10 : 70;
     const influenceRadius = prefersReducedMotion ? 160 : 320;
     const smoothing = prefersReducedMotion ? 0.04 : 0.1;
@@ -99,9 +119,16 @@ export function GlowyWavesHero({
       targetMouseRef.current = p;
     };
 
-    const handleResize = () => { resizeCanvas(); recenterMouse(); };
-    const handleMouseMove = (e: MouseEvent) => { targetMouseRef.current = { x: e.clientX, y: e.clientY }; };
-    const handleMouseLeave = () => { recenterMouse(); };
+    const handleResize = () => {
+      resizeCanvas();
+      recenterMouse();
+    };
+    const handleMouseMove = (e: MouseEvent) => {
+      targetMouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    const handleMouseLeave = () => {
+      recenterMouse();
+    };
 
     resizeCanvas();
     recenterMouse();
@@ -119,11 +146,16 @@ export function GlowyWavesHero({
         const dy = canvas.height / 2 - mouseRef.current.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         const influence = Math.max(0, 1 - distance / influenceRadius);
-        const mouseEffect = influence * mouseInfluence * Math.sin(time * 0.001 + x * 0.01 + wave.offset);
+        const mouseEffect =
+          influence *
+          mouseInfluence *
+          Math.sin(time * 0.001 + x * 0.01 + wave.offset);
         const y =
           canvas.height / 2 +
-          Math.sin(x * wave.frequency + time * 0.002 + wave.offset) * wave.amplitude +
-          Math.sin(x * wave.frequency * 0.4 + time * 0.003) * (wave.amplitude * 0.45) +
+          Math.sin(x * wave.frequency + time * 0.002 + wave.offset) *
+            wave.amplitude +
+          Math.sin(x * wave.frequency * 0.4 + time * 0.003) *
+            (wave.amplitude * 0.45) +
           mouseEffect;
         if (x === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
@@ -138,8 +170,10 @@ export function GlowyWavesHero({
 
     const animate = () => {
       time += 1;
-      mouseRef.current.x += (targetMouseRef.current.x - mouseRef.current.x) * smoothing;
-      mouseRef.current.y += (targetMouseRef.current.y - mouseRef.current.y) * smoothing;
+      mouseRef.current.x +=
+        (targetMouseRef.current.x - mouseRef.current.x) * smoothing;
+      mouseRef.current.y +=
+        (targetMouseRef.current.y - mouseRef.current.y) * smoothing;
 
       const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
       gradient.addColorStop(0, "#060606");
@@ -163,16 +197,25 @@ export function GlowyWavesHero({
 
   return (
     <section className="relative isolate flex min-h-[85vh] w-full items-center justify-center overflow-hidden">
-      <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 h-full w-full"
+        aria-hidden="true"
+      />
 
       {/* Soft radial glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/[0.06] blur-[140px]" />
-        <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-accent-teal/[0.05] blur-[120px]" />
+        <div className="absolute left-1/2 top-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-primary/6 blur-[140px]" />
+        <div className="absolute bottom-0 right-0 h-[360px] w-[360px] rounded-full bg-accent-teal/5 blur-[120px]" />
       </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1200px] flex-col items-center px-6 py-24 text-center sm:px-12 lg:px-16">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="w-full">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="w-full"
+        >
           {/* Badge */}
           <motion.div
             variants={itemVariants}
@@ -212,7 +255,10 @@ export function GlowyWavesHero({
               className="mb-10 flex flex-wrap items-center justify-center gap-3 text-[10px] uppercase tracking-[0.2em] text-white/60 font-bold"
             >
               {pills.map((pill) => (
-                <li key={pill} className="rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+                <li
+                  key={pill}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm"
+                >
                   {pill}
                 </li>
               ))}
@@ -226,9 +272,17 @@ export function GlowyWavesHero({
               className="grid gap-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:grid-cols-4"
             >
               {stats.map((stat) => (
-                <motion.div key={stat.label} variants={itemVariants} className="space-y-1">
-                  <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">{stat.label}</div>
-                  <div className="text-2xl sm:text-3xl font-black text-white">{stat.value}</div>
+                <motion.div
+                  key={stat.label}
+                  variants={itemVariants}
+                  className="space-y-1"
+                >
+                  <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 font-bold">
+                    {stat.label}
+                  </div>
+                  <div className="text-2xl sm:text-3xl font-black text-white">
+                    {stat.value}
+                  </div>
                 </motion.div>
               ))}
             </motion.div>

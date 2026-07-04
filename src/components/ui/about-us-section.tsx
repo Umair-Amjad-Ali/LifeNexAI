@@ -18,7 +18,13 @@ import {
   Zap,
   TrendingUp,
 } from "lucide-react";
-import { motion, useScroll, useTransform, useInView, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  useSpring,
+} from "framer-motion";
 import { COLORS } from "@/constants/colors";
 
 export default function AboutUsSection() {
@@ -66,7 +72,9 @@ export default function AboutUsSection() {
   const services = [
     {
       icon: <Activity className="w-5 h-5" />,
-      secondaryIcon: <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "AI Systems",
       description:
         "Architecting customized deep learning models, clinical diagnostic telemetry, and real-time medical stream processing systems.",
@@ -74,7 +82,9 @@ export default function AboutUsSection() {
     },
     {
       icon: <Layers className="w-5 h-5" />,
-      secondaryIcon: <CheckCircle className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <CheckCircle className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "Cloud Core",
       description:
         "Deploying high-availability secure FHIR databases, containerized microservice APIs, and encrypted transfer channels.",
@@ -82,7 +92,9 @@ export default function AboutUsSection() {
     },
     {
       icon: <PenTool className="w-5 h-5" />,
-      secondaryIcon: <Star className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <Star className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "UI/UX Design",
       description:
         "Crafting intuitive patient and practitioner dashboards optimized for visual hierarchy, usability, and lightning speeds.",
@@ -90,7 +102,9 @@ export default function AboutUsSection() {
     },
     {
       icon: <Settings className="w-5 h-5" />,
-      secondaryIcon: <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <Sparkles className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "Modern Web",
       description:
         "Developing responsive web platforms, telemetry panels, and real-time clinical monitoring interfaces utilizing React and Next.js.",
@@ -98,7 +112,9 @@ export default function AboutUsSection() {
     },
     {
       icon: <Ruler className="w-5 h-5" />,
-      secondaryIcon: <CheckCircle className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <CheckCircle className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "Agile Sprints",
       description:
         "Rigorous software blueprinting and rapid iteration cycles ensuring projects meet deadlines and regulatory requirements.",
@@ -106,7 +122,9 @@ export default function AboutUsSection() {
     },
     {
       icon: <Cpu className="w-5 h-5" />,
-      secondaryIcon: <Star className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />,
+      secondaryIcon: (
+        <Star className="w-3 h-3 absolute -top-1 -right-1 text-indigo-400" />
+      ),
       title: "Execution",
       description:
         "Bringing platforms to life with clean TypeScript codebase, test-driven protocols, and automated deployment pipelines.",
@@ -118,14 +136,19 @@ export default function AboutUsSection() {
     { icon: <Award />, value: 150, label: "Projects Completed", suffix: "+" },
     { icon: <Users />, value: 1200, label: "Happy Clients", suffix: "+" },
     { icon: <Calendar />, value: 12, label: "Years Experience", suffix: "" },
-    { icon: <TrendingUp />, value: 98, label: "Satisfaction Rate", suffix: "%" },
+    {
+      icon: <TrendingUp />,
+      value: 98,
+      label: "Satisfaction Rate",
+      suffix: "%",
+    },
   ];
 
   return (
     <section
       id="about-section"
       ref={sectionRef}
-      className="w-full py-24 px-4 bg-gradient-to-b from-slate-50 to-white text-slate-900 overflow-hidden relative border-t border-slate-200"
+      className="w-full py-24 px-4 bg-linear-to-b from-slate-50 to-white text-slate-900 overflow-hidden relative border-t border-slate-200"
     >
       {/* Decorative background elements */}
       <motion.div
@@ -170,7 +193,10 @@ export default function AboutUsSection() {
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <motion.div className="flex flex-col items-center mb-6" variants={itemVariants}>
+        <motion.div
+          className="flex flex-col items-center mb-6"
+          variants={itemVariants}
+        >
           <motion.span
             className="font-black text-[10px] tracking-[0.25em] mb-2 flex items-center gap-2 uppercase"
             style={{ color: COLORS.primary }}
@@ -181,7 +207,9 @@ export default function AboutUsSection() {
             <Zap className="w-4 h-4" />
             DISCOVER OUR STORY
           </motion.span>
-          <h2 className="text-4xl md:text-5xl font-black text-center uppercase tracking-tight font-sans">About Us</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-center uppercase tracking-tight font-sans">
+            About Us
+          </h2>
           <motion.div
             className="w-24 h-1 mt-4"
             style={{ backgroundColor: COLORS.primary }}
@@ -191,8 +219,13 @@ export default function AboutUsSection() {
           ></motion.div>
         </motion.div>
 
-        <motion.p className="text-center max-w-2xl mx-auto mb-16 text-slate-600 font-medium" variants={itemVariants}>
-          We are a passionate team of developers, designers, and systems architects dedicated to engineering beautiful, functional platforms that inspire and elevate everyday operations.
+        <motion.p
+          className="text-center max-w-2xl mx-auto mb-16 text-slate-600 font-medium"
+          variants={itemVariants}
+        >
+          We are a passionate team of developers, designers, and systems
+          architects dedicated to engineering beautiful, functional platforms
+          that inspire and elevate everyday operations.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative items-center">
@@ -215,8 +248,11 @@ export default function AboutUsSection() {
           </div>
 
           {/* Center Image */}
-          <div className="flex justify-center items-center order-first md:order-none mb-8 md:mb-0">
-            <motion.div className="relative w-full max-w-xs" variants={itemVariants}>
+          <div className="flex justify-center items-center order-first md:order-0 mb-8 md:mb-0">
+            <motion.div
+              className="relative w-full max-w-xs"
+              variants={itemVariants}
+            >
               <motion.div
                 className="rounded-xl overflow-hidden shadow-xl border border-slate-200"
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -230,7 +266,7 @@ export default function AboutUsSection() {
                   className="w-full h-full object-cover aspect-3/4"
                 />
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-slate-950/70 to-transparent flex items-end justify-center p-4"
+                  className="absolute inset-0 bg-linear-to-t from-slate-950/70 to-transparent flex items-end justify-center p-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
@@ -346,8 +382,12 @@ export default function AboutUsSection() {
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <div className="flex-1">
-            <h3 className="text-2xl font-bold tracking-tight mb-2 uppercase">Ready to transform your operations?</h3>
-            <p className="text-slate-300 text-sm font-medium">Let's create high-performance systems together.</p>
+            <h3 className="text-2xl font-bold tracking-tight mb-2 uppercase">
+              Ready to transform your operations?
+            </h3>
+            <p className="text-slate-300 text-sm font-medium">
+              Let's create high-performance systems together.
+            </p>
           </div>
           <motion.button
             className="hover:bg-opacity-95 text-white px-6 py-3 rounded-lg flex items-center gap-2 font-bold text-xs tracking-wider uppercase"
@@ -373,7 +413,15 @@ interface ServiceItemProps {
   direction: "left" | "right";
 }
 
-function ServiceItem({ icon, secondaryIcon, title, description, variants, delay, direction }: ServiceItemProps) {
+function ServiceItem({
+  icon,
+  secondaryIcon,
+  title,
+  description,
+  variants,
+  delay,
+  direction,
+}: ServiceItemProps) {
   return (
     <motion.div
       className="flex flex-col group"
@@ -390,7 +438,10 @@ function ServiceItem({ icon, secondaryIcon, title, description, variants, delay,
         <motion.div
           className="bg-indigo-500/10 p-2 rounded-md transition-colors duration-300 group-hover:bg-indigo-500/20 relative"
           style={{ color: COLORS.primary }}
-          whileHover={{ rotate: [0, -10, 10, -5, 0], transition: { duration: 0.5 } }}
+          whileHover={{
+            rotate: [0, -10, 10, -5, 0],
+            transition: { duration: 0.5 },
+          }}
         >
           {icon}
           {secondaryIcon}
@@ -444,7 +495,9 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
     }
   }, [isInView, value, springValue]);
 
-  const displayValue = useTransform(springValue, (latest) => Math.floor(latest));
+  const displayValue = useTransform(springValue, (latest) =>
+    Math.floor(latest),
+  );
 
   return (
     <motion.div
@@ -466,12 +519,17 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
       >
         {icon}
       </motion.div>
-      <motion.div ref={countRef} className="text-3xl font-black text-slate-900 flex items-center tracking-tight">
+      <motion.div
+        ref={countRef}
+        className="text-3xl font-black text-slate-900 flex items-center tracking-tight"
+      >
         <motion.span>{displayValue}</motion.span>
         <span>{suffix}</span>
       </motion.div>
-      <p className="text-slate-600 font-semibold text-xs mt-1 uppercase tracking-wider">{label}</p>
-      <motion.div 
+      <p className="text-slate-600 font-semibold text-xs mt-1 uppercase tracking-wider">
+        {label}
+      </p>
+      <motion.div
         className="w-10 h-0.5 mt-3 group-hover:w-16 transition-all duration-300"
         style={{ backgroundColor: COLORS.primary }}
       />

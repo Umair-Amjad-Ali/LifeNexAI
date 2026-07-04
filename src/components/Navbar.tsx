@@ -38,16 +38,7 @@ export default function Navbar({ setIsQuoteModalOpen }: NavbarProps) {
             <Link
               href="/"
               className="relative flex h-10 w-10 items-center justify-center rounded-full border border-primary/40 bg-black cursor-pointer hover:border-primary shadow-[0_0_15px_rgba(79,70,229,0.15)] hover:shadow-[0_0_20px_rgba(79,70,229,0.4)] transition-all group"
-            >
-              <div
-                className="h-3 w-3 rounded-full animate-pulse"
-                style={{ backgroundColor: COLORS.primary }}
-              />
-              <div
-                className="absolute inset-0 rounded-full border border-dashed animate-spin [animation-duration:10s] group-hover:border-primary"
-                style={{ borderColor: `${COLORS.primary}40` }}
-              />
-            </Link>
+            ></Link>
             <span className="font-sans font-black tracking-[0.2em] text-sm sm:text-base bg-linear-to-r from-white via-white to-primary bg-clip-text text-transparent">
               LIFENEX AI
             </span>

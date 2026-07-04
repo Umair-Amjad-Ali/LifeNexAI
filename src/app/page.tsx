@@ -10,6 +10,7 @@ import { Features } from "@/components/Features";
 import AboutUsSection from "@/components/ui/about-us-section";
 import LifeVoices from "@/components/LifeVoices";
 import { COLORS } from "@/constants/colors";
+import FAQ1 from "@/components/ui/faq-monochrome";
 
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -186,6 +187,8 @@ export default function Home() {
     },
   ];
 
+  const newLocal =
+    "grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16";
   return (
     <div
       className="relative min-h-screen text-white overflow-hidden selection:text-white"
@@ -234,7 +237,7 @@ export default function Home() {
                     exit="exit"
                     className="absolute inset-0 w-full h-full flex items-center justify-center pt-24 pb-8 overflow-hidden"
                   >
-                    <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-4 lg:gap-6 items-center w-full max-w-[1200px] mx-auto px-8 sm:px-12 lg:px-16">
+                    <div className={newLocal}>
                       {/* LEFT: Content */}
                       <div className="flex flex-col justify-center">
                         <div className="flex items-center gap-2 mb-5">
@@ -254,7 +257,7 @@ export default function Home() {
                           <span className="text-stroke-gray uppercase block mt-1 hover:text-white transition-colors duration-500">
                             CLINICAL SYSTEMS
                           </span>
-                          <span className="bg-linear-to-r from-primary via-[#38bdf8] to-white bg-clip-text text-transparent uppercase block mt-1">
+                          <span className="bg-linear-to-r from-primary via-accent-teal to-white bg-clip-text text-transparent uppercase block mt-1">
                             WITH NEXT-GEN AI.
                           </span>
                         </h2>
@@ -720,6 +723,7 @@ export default function Home() {
           <Features />
           <AboutUsSection />
           <LifeVoices />
+          <FAQ1 />
         </main>
       </div>
 
